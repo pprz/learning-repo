@@ -34,5 +34,3 @@ In this example:
 6. Avoid mental mapping: In the bad practice example, a1 is a poor choice for a variable name because it requires mental mapping. It's not clear what a1 stands for unless you keep a mental note that a1 stands for "array 1".
 
 7. Don't add unneeded prefixes: In the bad practice example, myArray has an unneeded prefix "my". Just array is clear and sufficient.
-
-Remember, the goal of these principles is to make the code as clear and easy to understand as possible.
