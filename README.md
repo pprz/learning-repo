@@ -1,1 +1,1 @@
-# learning-repo
+# Neo's personal learning repo
