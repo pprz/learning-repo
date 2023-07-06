@@ -1,32 +1,106 @@
 ```typescript
 // Bad practice
-function u(p: Product[]) {
-  // Non-descriptive function name and parameter
-  for (let i = 0; i < p.length; i++) {
-    // Requires mental mapping
-    console.log(p[i]);
-  }
+function a(n: string, e: string, a: string = "OK", c: boolean = true) {
+  // Non-descriptive function name and parameters
+  // ...
 }
 
 // Good practice
-function printProducts(products: Product[]) {
-  // Use descriptive function names
-  products.forEach((product) => console.log(product)); // Use higher-order functions instead of loops
+function createDialogBox(options: DialogOptions) {
+  // Function names should say what they do
+  const { title, body, buttonText = "OK", cancellable = true } = options;
+  // ...
 }
 
 // Function that does one thing
+function isUserActive(user: User): boolean {
+  // Functions should only be one level of abstraction
+  return user.isActive; // Avoids unnecessary temporary variables
+}
+
+// Remove duplicate code
 function calculateTotalPrice(cart: Cart): number {
   // Use names that reveal intent
-  return cart.products.reduce((total, product) => total + product.price, 0); // Use higher-order functions instead of loops
+  return cart.products.reduce((total, product) => total + product.price, 0); // Use iterators and generators
+}
+
+// Set default objects with Object.assign or destructuring
+function createProduct(options: Partial<Product> = {}) {
+  const defaultOptions = {
+    name: "Default Name",
+    price: 100,
+    isAvailable: true,
+  };
+  const finalOptions = { ...defaultOptions, ...options }; // Set default objects with Object.assign or destructuring
+  // ...
+}
+
+// Don't use flags as function parameters
+function createInvoice(product: Product, isDiscounted: boolean) {
+  // Don't use flags as function parameters
+  if (isDiscounted) {
+    // ...
+  } else {
+    // ...
+  }
+}
+
+// Avoid Side Effects (part 1)
+let name = "John Doe"; // Avoid writing to global functions
+function setName(newName: string) {
+  name = newName; // This is a side effect
+}
+
+// Avoid Side Effects (part 2)
+function createInvoice(product: Product) {
+  product.price = 100; // This is a side effect
+}
+
+// Favor functional programming over imperative programming
+let activeUsers = []; // Avoid Side Effects (part 1)
+for (let i = 0; i < users.length; i++) {
+  // Favor functional programming over imperative programming
+  if (users[i].isActive) {
+    activeUsers.push(users[i]);
+  }
+}
+
+// Encapsulate conditionals
+if (user.age >= 18 && user.isActive) {
+  // Encapsulate conditionals
+  // ...
+}
+
+// Avoid negative conditionals
+if (!user.isInactive) {
+  // Avoid negative conditionals
+  // ...
+}
+
+// Avoid conditionals
+function getFee(isMember: boolean) {
+  // Avoid conditionals
+  return isMember ? 0.1 : 0.2;
+}
+
+// Avoid type checking
+function combine(a: any, b: any) {
+  // Avoid type checking
+  if (typeof a === "string" || typeof b === "string") {
+    return a.toString() + b.toString();
+  }
+  return a + b;
+}
+
+// Don't over-optimize
+for (let i = 0; i < 1000000; i++) {
+  // Don't over-optimize
+  // ...
+}
+
+// Remove dead code
+function oldFunction() {
+  // Remove dead code
+  // ...
 }
 ```
-
-in this example:
-
-- Use descriptive function names: printProducts and calculateTotalPrice are examples of descriptive function names. They clearly indicate what the function does.
-
-- Functions should do one thing: calculateTotalPrice is a good example of a function that does one thing. It calculates the total price of all products in a cart.
-
-- Use higher-order functions instead of loops: Both printProducts and calculateTotalPrice use higher-order functions (forEach and reduce) instead of loops. This makes the code more concise and easier to understand.
-
-- Use names that reveal intent: calculateTotalPrice is a good example of a function name that reveals intent. It's clear that this function is expected to calculate and return the total price of all products in a cart.
